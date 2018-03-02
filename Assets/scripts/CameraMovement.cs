@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour {
 	public float minX, minY, maxX, maxY;
 	private Transform myBalloon;
 	void Start () {
-		myBalloon = GameObject.Find("MyBalloon").transform;
+		myBalloon = GameObject.Find("Balloon").transform;
 	}
 	
 	// Update is called once per frame
