@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3(Mathf.Clamp(myBalloon.position.x,minX,maxX),Mathf.Clamp( myBalloon.position.y,minY,maxY),transform.position.z);
+		if(myBalloon)
+			transform.position = new Vector3(Mathf.Clamp(myBalloon.position.x,minX,maxX),Mathf.Clamp( myBalloon.position.y,minY,maxY),transform.position.z);
 	}
 }

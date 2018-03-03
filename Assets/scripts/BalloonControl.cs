@@ -7,11 +7,13 @@ public class BalloonControl : MonoBehaviour {
 	public float Force = 100;
 	public float gasSpeed=0.02f, gasMinSpeed=1;
 	private Rigidbody2D body;
+	private BalloonHealth health;
 	// Use this for initialization
 	private Transform cameratrans;
 	void Start () {
 		body = GetComponent<Rigidbody2D>();
 		cameratrans = GameObject.Find("Main Camera").transform;
+		health = GetComponent<BalloonHealth>();
 	}
 	
 	// Update is called once per frame
@@ -27,13 +29,13 @@ public class BalloonControl : MonoBehaviour {
 		if (angle < 0)
 			angle += 360;
 		transform.eulerAngles = new Vector3(0, 0, angle);
-		float gas = GetComponent<BalloonHealth>().gas;
-		if (Input.GetMouseButton(0) && gas >= 1 && GetComponent<BalloonHealth>().outofcontrol == 0)
+		float gas = health.gas;
+		if (Input.GetMouseButton(0) && gas >= 1 && health.outofcontrol == 0)
 		{
 			delta.Normalize();
 			gas = (gasSpeed * gas + gasMinSpeed)*Time.deltaTime;
 			body.AddForce(new Vector2(Force * gas * delta.x, Force * gas * delta.y));
-			GetComponent<BalloonHealth>().gas_subtract(-gas);
+			health.gas_subtract(-gas);
 		}
 	}
 }

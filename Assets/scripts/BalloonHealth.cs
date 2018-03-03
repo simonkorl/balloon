@@ -8,10 +8,12 @@ public class BalloonHealth : MonoBehaviour {
 	public float leak_time = 0.3f, leak_v, leak_v1 = 0.3f, leak_v2 = 20;
 	public bool isleak;
 	public int outofcontrol;
+	private Rigidbody2D body;
 	// Use this for initialization
 	void Start ()
 	{
 		gas = 100.0f;
+		body = GetComponent<Rigidbody2D>();
 	}
 
 	void stopleak()
@@ -31,11 +33,13 @@ public class BalloonHealth : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		transform.localScale = new Vector3(Mathf.Pow(gas / 100.0f,0.4f), Mathf.Pow(gas/100.0f,0.4f), 0);
+		body.mass = 0.5f + gas * 0.005f;
 		if (isleak)
 		{
 			gas_subtract(-leak_v*Time.deltaTime/leak_time);
 		}
-		transform.localScale = new Vector3(Mathf.Pow(gas / 100.0f,0.3f), Mathf.Pow(gas/100.0f,0.3f), 0);
+
 	}
 
 	private void die()
