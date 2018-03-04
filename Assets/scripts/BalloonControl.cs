@@ -22,8 +22,8 @@ public class BalloonControl : MonoBehaviour {
 	void FixedUpdate()
 	{
 		Vector2 delta;
-		delta.x = (Input.mousePosition.x - Screen.width / 2.0f) * 10.0f / Screen.height + cameratrans.position.x - transform.position.x;
-		delta.y = (Input.mousePosition.y - Screen.height / 2.0f) * 10.0f / Screen.height + cameratrans.position.y - transform.position.y;
+		delta.x = (Input.mousePosition.x - Screen.width / 2.0f) * 20.0f / Screen.height + cameratrans.position.x - transform.position.x;
+		delta.y = (Input.mousePosition.y - Screen.height / 2.0f) * 20.0f / Screen.height + cameratrans.position.y - transform.position.y;
 		float angle = Mathf.Atan2(delta.y, delta.x) * 180 / Mathf.PI - 90;
 		//Debug.Log(Input.mousePosition.x + " " + Input.mousePosition.y);
 		if (angle < 0)

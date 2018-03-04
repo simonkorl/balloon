@@ -18,7 +18,7 @@ public class CreateSupply : MonoBehaviour {
 		relativeTime -= Time.deltaTime;
 		while (relativeTime < 0)
 		{
-			GameObject.Instantiate(supply,transform);
+			GameObject.Instantiate(supply,transform.position,transform.rotation,transform);
 			relativeTime += 1.0f / CreateNumberPS;
 		}
 	}

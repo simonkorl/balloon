@@ -16,23 +16,28 @@ public class SupplyControl : MonoBehaviour {
 		Speed.x = (maxX - minX) * Random.value + minX - transform.position.x;
 		Speed.y = (maxY - minY) * Random.value + minY - transform.position.y;
 		Speed *= StandardSpeed;
+		//Debug.Log(transform.position.x+" "+transform.position.y);
 		GetComponent<Rigidbody2D>().velocity = Speed;
+		GameObject.Find("Text").GetComponent<stats>().numofsupply++;
+		//Debug.Log(Speed.x + " " + Speed.y);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//Debug.Log(transform.position.x + " " + transform.position.y);
 		if (transform.position.x < minX || transform.position.x > maxX || transform.position.y < minY || transform.position.y > maxY)
 		{
+			GameObject.Find("Text").GetComponent<stats>().numofsupply--;
 			Destroy(this.gameObject);
 		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log(transform.position.x + " " + transform.position.y);
 		if (collision.gameObject.tag == "Balloon")
 		{
 			collision.gameObject.GetComponent<BalloonHealth>().gas_subtract(gas);
+			GameObject.Find("Text").GetComponent<stats>().numofsupply--;
 			Destroy(this.gameObject);
 		}
 	}
